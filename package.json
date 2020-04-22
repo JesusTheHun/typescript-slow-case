@@ -1,0 +1,16 @@
+{
+  "name": "typescript-slow-case",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.tsx",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "typesafe-actions": "^5.1.0",
+    "utility-types": "^3.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}
