@@ -2,19 +2,21 @@ import { GetManageableType, Manageable, ManageableType } from '../models/managea
 import manageableActions, { ManageableActions } from './index';
 
 export type ActionKind<M extends Manageable> = keyof ManageableActions<M>;
-export type ActionRequestCreatorType<M extends Manageable, K extends ActionKind<M>> = ManageableActions<M>[K]['request'];
-export type ActionRequestType<M extends Manageable, K extends ActionKind<M>> = ReturnType<ActionRequestCreatorType<M, K>>;
-export type ActionRequestPayloadType<M extends Manageable, K extends ActionKind<M>> = Parameters<ActionRequestCreatorType<M, K>>[0];
+export type RequestActionCreator<M extends Manageable, K extends ActionKind<M>> = ManageableActions<M>[K]['request'];
+export type RequestActionCreatorPayload<M extends Manageable, K extends ActionKind<M>> = Parameters<RequestActionCreator<M, K>>[0];
+export type RequestAction<M extends Manageable, K extends ActionKind<M>> = ReturnType<RequestActionCreator<M, K>>;
 
 export function getManageableAction<
   T extends ManageableType,
   M extends GetManageableType<T>,
   K extends ActionKind<M>,
-  P extends ActionRequestPayloadType<M, K>
+  P extends RequestActionCreatorPayload<M, K>
 >
-(manageableType: T, kind: K, payload: P): ActionRequestType<M, K> {
+(manageableType: T, kind: K, payload: P): RequestAction<M, K> {
   const actions = manageableActions[manageableType];
-  const action = actions[kind];
-  const actionRequest = action['request'];
-  return actionRequest(payload);
+  const actionWorkflow = actions[kind];
+  const requestActionCreator = actionWorkflow['request'];
+  const action =  requestActionCreator(payload);
+
+  return action;
 }

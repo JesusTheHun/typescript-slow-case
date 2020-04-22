@@ -8,9 +8,11 @@ import task from './task';
 import question from './question';
 import requirement from './requirement';
 import { GetManageableType, Manageable, ManageableType } from '../models/manageable.model';
-import { CrudActionsType } from '../types';
+import {CrudActionsType, FetchListActionType} from '../types';
 
-export type ManageableActions<M extends Manageable> = CrudActionsType<M> & {};
+export type ManageableActions<M extends Manageable> = CrudActionsType<M> & {
+  fetchListWithLinks: FetchListActionType<M>;
+};
 
 const manageableActions: { [key in ManageableType]: ManageableActions<GetManageableType<key>> } = {
   budget,

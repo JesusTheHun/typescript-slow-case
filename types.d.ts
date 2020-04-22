@@ -61,7 +61,6 @@ export type DeleteActionType<T> = {
 export type CrudActionsType<T> = {
     fetch: FetchActionType<T>;
     fetchList: FetchListActionType<T>;
-    fetchListWithLinks: FetchListActionType<T>;
     create: CreateActionType<T>;
     update: UpdateActionType<T>;
     delete: DeleteActionType<T>;
