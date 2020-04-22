@@ -1,7 +1,7 @@
 import { createAsyncAction} from 'typesafe-actions';
 import { ManageableActions } from './index';
 import { Requirement } from '../models/requirement.model';
-import { DeletePayload, FetchListPayload, FetchPayload } from '../../app/actions/types';
+import { DeletePayload, FetchListPayload, FetchPayload } from '../types';
 
 export const fetchRequirementAsync = createAsyncAction(
   'FETCH_REQUIREMENT_REQUEST',

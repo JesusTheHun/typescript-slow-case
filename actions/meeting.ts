@@ -1,7 +1,7 @@
 import { createAsyncAction} from 'typesafe-actions';
 import { ManageableActions } from './index';
 import { Meeting } from '../models/meeting.model';
-import { DeletePayload, FetchListPayload, FetchPayload } from '../../app/actions/types';
+import { DeletePayload, FetchListPayload, FetchPayload } from '../types';
 
 export const fetchMeetingAsync = createAsyncAction(
   'FETCH_MEETING_REQUEST',

@@ -27,10 +27,6 @@ export interface Manageable {
   projectId: string;
 }
 
-export type PartialManageable<M extends Manageable> = Partial<M> & {
-  manageableType: ManageableType;
-}
-
 export type GetManageableType<T extends ManageableType> =
   T  extends 'budget' ? Budget :
   T  extends 'control' ? Control :
